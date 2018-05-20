@@ -20,6 +20,17 @@ const rename = require('gulp-rename');
 const browserSync = require('browser-sync').create();
 const sequence = require('run-sequence');
 
+gulp.task('js', function() {
+  gulp.src('./src/;*.js')
+    .pipe(concat('bundle.js'))
+    .pipe(babel({
+      presets: ['es2017']
+    }))
+    .pipe(uglify())
+    .pipe(gulp.dest('uglify'))
+    .pipe(notify('Done!'));
+});
+
 gulp.task('html', () =>
   gulp
     .src('./src/*.html')
